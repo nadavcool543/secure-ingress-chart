@@ -1,5 +1,10 @@
 namespace: custom-namespace
 
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "secure-ingress-sa"
+
 service:
   name: custom-nginx-service
   port: 8080
