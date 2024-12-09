@@ -1,50 +1,41 @@
-
-namespace: test-cert
-
+namespace: custom-namespace
 
 service:
-  name: nginx-service
-  port: 80
-  targetPort: 80
+  name: custom-nginx-service
+  port: 8080
+  targetPort: 8080
   selector:
     app: nginx
 
-
 ingress:
-  name: nginx-ingress
+  name: custom-nginx-ingress
   annotations:
     cert-manager.io/cluster-issuer: "selfsigned-issuer"
-  host: test.local
+  host: custom.example.com
   tls:
-    secretName: test-tls
+    secretName: custom-tls
   backend:
-    serviceName: nginx-service
-    servicePort: 80
-
+    serviceName: custom-nginx-service
+    servicePort: 8080
 
 cert-manager:
   enabled: true
   installCRDs: false  
-  
 
   global:
     leaderElection:
       namespace: cert-manager
 
- 
   prometheus:
     enabled: true
     servicemonitor:
       enabled: false
 
-  
   webhook:
     enabled: true
 
-
   cainjector:
     enabled: true
-
 
 clusterIssuer:
   name: selfsigned-issuer
