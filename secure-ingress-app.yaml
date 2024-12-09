@@ -9,9 +9,6 @@ spec:
     repoURL: https://github.com/nadavcool543/secure-ingress-chart.git
     targetRevision: main
     path: .
-    helm:
-      valueFiles:
-        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: test-cert
@@ -21,3 +18,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
